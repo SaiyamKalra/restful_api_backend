@@ -5,7 +5,10 @@ const bookClient=new PrismaClient().book;
 // getAllBooks
 export const getAllBooks=async(req,res)=>{
     try{
-        const allBooks=await bookClient.findMany({})
+        const allBooks=await bookClient.findMany({
+            skip:+req.query.skip,
+            take:+req.query.take,
+        })
         res.status(200).json({data:allBooks})
     }
     catch(e){
@@ -33,7 +36,14 @@ export const createBook=async(req,res)=>{
     try{
         const BookData=req.body;
         const book=await bookClient.create({
-            data:BookData,
+            data:{
+                title:BookData.title,
+                author:{
+                    connect:{
+                        id:BookData.authorId,
+                    }
+                }
+            }
         });
         res.status(201).json({data:book});
     }
