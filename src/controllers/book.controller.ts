@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 // import {PrismaClient} from "../generated/prisma/client";
+// import {S3Client} from "@aws-sdk/client-s3";
+
 const bookClient=new PrismaClient().book;
 
 // getAllBooks

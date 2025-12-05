@@ -1,4 +1,6 @@
 import { PrismaClient } from "@prisma/client";
+console.log("Prisma import OK");
+new PrismaClient();
 // import {PrismaClient} from "../generated/prisma/client";
 const authorClient=new PrismaClient().author;
 

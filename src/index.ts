@@ -1,4 +1,6 @@
+import 'dotenv/config';
 import express from 'express';
+import bookImageRouter from './routes/book_image.router';
 // FIX: Use a dot-slash for files in the same or sub-directory.
 import authorRouter from './routes/author.router';
 import bookRouter from './routes/book.router';
@@ -6,7 +8,7 @@ const app=express()
 const port=process.env.PORT || 8080;
 
 app.use(express.json())
-
+app.use('/bookImage',bookImageRouter);
 app.use('/authors',authorRouter);
 app.use('/books',bookRouter);
 app.get('/ping',(req,res)=>{

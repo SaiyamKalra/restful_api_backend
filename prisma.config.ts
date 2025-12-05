@@ -1,12 +1,16 @@
-import { defineConfig, env } from "prisma/config";
-import 'dotenv/config';
+// prisma.config.ts
+import { defineConfig, env } from "@prisma/config";
+import "dotenv/config";
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
   },
-  engine: "classic",
+
+  // Add the datasource connection here:
   datasource: {
-    url: env("DATABASE_URL"),
+    // prefer DATABASE_URL in .env; for sqlite you can use e.g. "file:./dev.db"
+    url: env("DATABASE_URL"), 
   },
 });

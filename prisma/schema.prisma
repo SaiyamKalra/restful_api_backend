@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider   = "prisma-client-js"
+  engineType = "library"
   // output   = "../src/generated/prisma"
 }
 
@@ -18,8 +19,16 @@ model Author {
 }
 
 model Book {
-  id       String @id @default(uuid())
-  author   Author @relation(fields: [authorId], references: [id])
+  id       String      @id @default(uuid())
+  author   Author      @relation(fields: [authorId], references: [id])
   authorId String
   title    String
+  images   BookImage[]
+}
+
+model BookImage {
+  id     String @id @default(uuid())
+  image  String
+  bookId String
+  book   Book   @relation(fields: [bookId], references: [id])
 }
